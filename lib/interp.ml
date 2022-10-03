@@ -47,7 +47,7 @@ let interp_unary_primitive : string -> value -> value option =
       Some (Bool true)
   | "not", _ ->
       Some (Bool false)
-  (* Task 1.1 and 1.2: Implement ref and deref here *)
+  (* Task 2.1 and 2.2: Implement ref and deref here *)
   | "ref", arg ->
       Some (Ref (ref arg))
   | "deref", arg -> (
@@ -70,7 +70,7 @@ let interp_binary_primitive : string -> value -> value -> value option =
       Some (Bool (x1 = x2))
   | "<", Num x1, Num x2 ->
       Some (Bool (x1 < x2))
-  (* Task 1.3: Implement set-ref here. *)
+  (* Task 2.3: Implement set-ref here. *)
   | "set-ref", arg1, arg2 -> (
     match arg1 with
     | Ref r ->

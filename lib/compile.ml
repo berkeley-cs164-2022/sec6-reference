@@ -16,7 +16,7 @@ let bool_mask = 0b1111111
 
 let bool_tag = 0b0011111
 
-(* Task 2.1: Add the ref_tag here. *)
+(* Task 3.1: Add the ref_tag here. *)
 let ref_mask = 0b111
 
 let ref_tag = 0b001
@@ -80,19 +80,19 @@ let compile_primitive : int -> s_exp -> string -> directive list =
       [Cmp (stack_address stack_index, Reg Rax)] @ zf_to_bool
   | "<" ->
       [Cmp (stack_address stack_index, Reg Rax)] @ setl_bool
-  (* Task 2.2: Implement (ref e) here. Remember that compile_expr below will already
+  (* Task 3.2: Implement (ref e) here. Remember that compile_expr below will already
      have compiled e and stored its value in Rax by the time this function is called. *)
   | "ref" ->
       [ Mov (MemOffset (Reg Rdi, Imm 0), Reg Rax)
       ; Mov (Reg Rax, Reg Rdi)
       ; Or (Reg Rax, Imm ref_tag)
       ; Add (Reg Rdi, Imm 8) ]
-  (* Task 2.3: Implement (deref e) here. Remember that you do not need to worry
+  (* Task 3.3: Implement (deref e) here. Remember that you do not need to worry
      about freeing memory. *)
   | "deref" ->
       ensure_reference (Reg Rax)
       @ [Mov (Reg Rax, MemOffset (Reg Rax, Imm (-ref_tag)))]
-  (* Task 2.4: Implement (set-ref r e) here. *)
+  (* Task 3.4: Implement (set-ref r e) here. *)
   | "set-ref" ->
       ensure_reference (stack_address stack_index)
       @ [Mov (Reg R8, stack_address stack_index)]

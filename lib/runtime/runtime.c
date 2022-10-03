@@ -12,7 +12,7 @@ extern uint64_t lisp_entry(void *heap);
 #define bool_tag 0b0011111
 #define bool_shift 7
 
-// Task 2.1: Define the ref_tag and ref_mask.
+// Task 3.1: Define the ref_tag and ref_mask.
 #define ref_mask 0b111
 #define ref_tag 0b001
 
@@ -33,7 +33,7 @@ void print_value(uint64_t value)
     {
       printf("false");
     }
-  } // Task 2.1: Implement printing of references.
+  } // Task 3.1: Implement printing of references.
   else if ((value & ref_mask) == ref_tag)
   {
     uint64_t v = *(uint64_t *)(value - ref_tag);
